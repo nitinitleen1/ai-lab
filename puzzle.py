@@ -4,8 +4,6 @@ goal_state = [1, 8, 7, 2, 0, 6, 3, 4, 5]
 #
 
 
-### Code begins.
-#import sys
 
 def display_board( state ):
 	print "-------------"
@@ -38,7 +36,7 @@ def move_down( state ):
 	# Perform object copy
 	new_state = state[:]
 	index = new_state.index( 0 )
-	# Sanity check
+	
 	if index not in [2, 5, 8]:
 		# Swap the values.
              temp = new_state[index + 1]
@@ -54,7 +52,7 @@ def move_left( state ):
 	"""Moves the blank tile left on the board. Returns a new state as a list."""
 	new_state = state[:]
 	index = new_state.index( 0 )
-	# Sanity check
+	
 	if index not in [0, 1, 2]:
 		# Swap the values.
              temp = new_state[index - 3]
@@ -71,7 +69,7 @@ def move_right( state ):
 	# Performs an object copy. Python passes by reference.
 	new_state = state[:]
 	index = new_state.index( 0 )
-	# Sanity check
+	
 	if index not in [6, 7, 8]:
 		# Swap the values.
              temp = new_state[index + 3]
@@ -124,12 +122,7 @@ def bfs( start, goal ):
 
 def dfs( start, goal, depth=10 ):
 	"""Performs a depth first search from the start state to the goal. Depth param is optional."""
-	# NOTE: This is a limited search or else it keeps repeating moves. This is an infinite search space.
-	# I'm not sure if I implemented this right, but I implemented an iterative depth search below
-	# too that uses this function and it works fine. Using this function itself will repeat moves until
-	# the depth_limit is reached. Iterative depth search solves this problem, though.
-	#
-	# An attempt of cutting down on repeat moves was made in the expand_node() function.
+	
 	depth_limit = depth
 	# A list (can act as a stack too) for the nodes.
 	nodes = []
@@ -183,7 +176,7 @@ class Node:
 def main():
 	starting_state = [8, 0, 7, 1, 2, 6, 3, 4, 5]
 	### CHANGE THIS FUNCTION TO USE bfs, dfs, ids or a_star
-	result = bfs( starting_state, goal_state )
+	result = ids( starting_state, goal_state )
 	if result == None:
 		print "No solution found"
 	elif result == [None]:
